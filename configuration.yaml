@@ -1,0 +1,18 @@
+job:
+    name: model
+    tags: {"env": "dev", "product": "sample"}
+    default_cluster_node_type_id: Standard_DS3_v2
+    git_url: "https://github.com/org/repo"
+    git_branch: "feature/model"
+    git_commit: 
+    git_tag:
+    tasks:
+        - task_key: feature
+          description: feature
+          python_file: feature.py
+          parameters: ["cohort"]
+        - task_key: model_scoring
+          description: model_scoring
+          python_file: model_scoring.py
+          parameters: ["scoring"]
+          depends_on: ["feature"]
